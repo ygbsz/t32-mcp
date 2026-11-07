@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "t32": {
+      "command": "C:/path/to/t32-mcp/.venv/Scripts/python.exe",
+      "args": [
+        "-m",
+        "t32_mcp",
+        "--sys",
+        "C:/T32"
+      ]
+    }
+  }
+}
