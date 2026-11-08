@@ -1,5 +1,7 @@
 # t32-mcp
 
+An MCP server for Lauterbach TRACE32, enabling AI agents to inspect embedded targets, run PRACTICE scripts, and control execution.
+
 面向 Windows 的 MCP 服务端。Agent 可以启动或连接 Lauterbach TRACE32 PowerView，执行调试命令、运行 PRACTICE 脚本并读取窗口输出。
 
 ## 能解决什么
