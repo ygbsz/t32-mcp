@@ -74,7 +74,7 @@ SETUP.API.RCL.Enable /PRotocol TCP /Port AUTO /RemoteHost DENY
 
 ## 运行记录
 
-每个会话一个目录，在 `%LOCALAPPDATA%\t32-mcp\sessions\` 下，保留最近 20 个：
+从源码安装时，会话文件放在本仓库的 `tmp/sessions/`。安装 wheel 时，目录在虚拟环境的 `t32_mcp/tmp/sessions/` 下。MCP 和 PowerView 都需要能读写这个位置。每个会话一个子目录，保留最近 20 个：
 
 - `journal.jsonl` 记录操作开始、参数和已取得的结果。进程意外退出时，最后一次操作可能只有开始记录。
 - `view-<op>.txt` 保存 PowerView 导出的窗口内容。

@@ -67,10 +67,17 @@ class Journal:
 ATTACH_LEFT = "PowerView is still running. Its print file type may have changed."
 
 
+def _default_state_root() -> Path:
+    root = Path(__file__).resolve().parent
+    if root.parent.name == "src" and (root.parent.parent / "pyproject.toml").is_file():
+        root = root.parent.parent
+    return root / "tmp" / "sessions"
+
+
 class Engine:
     def __init__(self, install: Install, state_root: Path | None = None):
         self.install = install
-        self.state_root = state_root or Path(os.environ.get("LOCALAPPDATA", Path.home())) / "t32-mcp" / "sessions"
+        self.state_root = state_root or _default_state_root()
         self.session: Session | None = None
         self.journal: Journal | None = None
         self.generation = 0

@@ -16,5 +16,6 @@ dist/
 *.ad
 *.sad
 /hardware-lab/
+/tmp/sessions/
 sweep-sessions/
 window_sweep.json

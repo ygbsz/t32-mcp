@@ -98,6 +98,19 @@ def run(coro):
     return asyncio.run(coro)
 
 
+@pytest.mark.parametrize("editable", [True, False], ids=["source", "wheel"])
+def test_default_session_directory_belongs_to_the_mcp(tmp_path, monkeypatch, editable):
+    checkout = tmp_path / "checkout"
+    package = (checkout / "src" if editable else tmp_path / "site-packages") / "t32_mcp"
+    package.mkdir(parents=True)
+    if editable:
+        (checkout / "pyproject.toml").touch()
+    monkeypatch.setattr(engine_module, "__file__", str(package / "engine.py"))
+    monkeypatch.chdir(tmp_path)
+    directory = Engine(Install.locate())._new_directory()
+    assert directory.parent == (checkout if editable else package) / "tmp" / "sessions"
+
+
 def test_finishes_within_wait(tmp_path):
     async def go():
         eng, s, conn = open_session(tmp_path)
